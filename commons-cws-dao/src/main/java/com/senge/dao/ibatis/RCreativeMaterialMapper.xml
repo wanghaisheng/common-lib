@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.clear.dao.dao.RCreativeMaterialMapper" >
+  <resultMap id="BaseResultMap" type="com.clear.dao.pojo.RCreativeMaterial" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="creative_id" property="creativeId" jdbcType="BIGINT" />
+    <result column="material_id" property="materialId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from r_creative_material
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.clear.dao.pojo.RCreativeMaterial" >
+    insert into r_creative_material (id, creative_id, material_id, 
+      create_time, modify_time)
+    values (#{id,jdbcType=BIGINT}, #{creativeId,jdbcType=BIGINT}, #{materialId,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.clear.dao.pojo.RCreativeMaterial" >
+    update r_creative_material
+    set creative_id = #{creativeId,jdbcType=BIGINT},
+      material_id = #{materialId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select id, creative_id, material_id, create_time, modify_time
+    from r_creative_material
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, creative_id, material_id, create_time, modify_time
+    from r_creative_material
+  </select>
+</mapper>

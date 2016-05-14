@@ -1,0 +1,6 @@
+#!/bin/bash
+export CATALINA_BASE=`dirname $PWD`
+export JPDA_ADDRESS=$tomcatJpdaPort
+export JPDA_TRANSPORT=dt_socket
+export JAVA_OPTS="-server -Xms512m -Xmx1024m -XX:MaxNewSize=512m -XX:PermSize=128m -XX:MaxPermSize=256m -Djava.awt.headless=true"
+$CATALINA_HOME/bin/catalina.sh jpda start

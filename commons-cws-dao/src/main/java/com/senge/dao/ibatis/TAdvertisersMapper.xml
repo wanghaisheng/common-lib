@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.clear.dao.dao.TAdvertisersMapper" >
+  <resultMap id="BaseResultMap" type="com.clear.dao.pojo.TAdvertisers" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="advertisers_name" property="advertisersName" jdbcType="VARCHAR" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="website_address" property="websiteAddress" jdbcType="VARCHAR" />
+    <result column="contact_name" property="contactName" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_advertisers
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.clear.dao.pojo.TAdvertisers" >
+    insert into t_advertisers (ID, advertisers_name, company_name, 
+      website_address, contact_name, phone, 
+      create_time, modify_time)
+    values (#{id,jdbcType=BIGINT}, #{advertisersName,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, 
+      #{websiteAddress,jdbcType=VARCHAR}, #{contactName,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.clear.dao.pojo.TAdvertisers" >
+    update t_advertisers
+    set advertisers_name = #{advertisersName,jdbcType=VARCHAR},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      website_address = #{websiteAddress,jdbcType=VARCHAR},
+      contact_name = #{contactName,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select ID, advertisers_name, company_name, website_address, contact_name, phone, 
+    create_time, modify_time
+    from t_advertisers
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select ID, advertisers_name, company_name, website_address, contact_name, phone, 
+    create_time, modify_time
+    from t_advertisers
+  </select>
+</mapper>

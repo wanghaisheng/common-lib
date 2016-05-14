@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.clear.dao.dao.TCreativeMapper" >
+  <resultMap id="BaseResultMap" type="com.clear.dao.pojo.TCreative" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="position_id" property="positionId" jdbcType="BIGINT" />
+    <result column="theme" property="theme" jdbcType="VARCHAR" />
+    <result column="target_url" property="targetUrl" jdbcType="VARCHAR" />
+    <result column="ad_form" property="adForm" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="location" property="location" jdbcType="VARCHAR" />
+    <result column="md5" property="md5" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_creative
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.clear.dao.pojo.TCreative" >
+    insert into t_creative (ID, position_id, theme, 
+      target_url, ad_form, create_time, 
+      modify_time, location, md5, 
+      type)
+    values (#{id,jdbcType=BIGINT}, #{positionId,jdbcType=BIGINT}, #{theme,jdbcType=VARCHAR}, 
+      #{targetUrl,jdbcType=VARCHAR}, #{adForm,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{location,jdbcType=VARCHAR}, #{md5,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.clear.dao.pojo.TCreative" >
+    update t_creative
+    set position_id = #{positionId,jdbcType=BIGINT},
+      theme = #{theme,jdbcType=VARCHAR},
+      target_url = #{targetUrl,jdbcType=VARCHAR},
+      ad_form = #{adForm,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      location = #{location,jdbcType=VARCHAR},
+      md5 = #{md5,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select ID, position_id, theme, target_url, ad_form, create_time, modify_time, location, 
+    md5, type
+    from t_creative
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select ID, position_id, theme, target_url, ad_form, create_time, modify_time, location, 
+    md5, type
+    from t_creative
+  </select>
+</mapper>

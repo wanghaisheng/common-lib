@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.clear.dao.dao.TPlanMapper" >
+  <resultMap id="BaseResultMap" type="com.clear.dao.pojo.TPlan" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="ad_id" property="adId" jdbcType="BIGINT" />
+    <result column="plan_name" property="planName" jdbcType="VARCHAR" />
+    <result column="max_exposure" property="maxExposure" jdbcType="INTEGER" />
+    <result column="max_frequency" property="maxFrequency" jdbcType="INTEGER" />
+    <result column="create_userid" property="createUserid" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_plan
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.clear.dao.pojo.TPlan" >
+    insert into t_plan (ID, ad_id, plan_name, 
+      max_exposure, max_frequency, create_userid, 
+      create_time, modify_time)
+    values (#{id,jdbcType=BIGINT}, #{adId,jdbcType=BIGINT}, #{planName,jdbcType=VARCHAR}, 
+      #{maxExposure,jdbcType=INTEGER}, #{maxFrequency,jdbcType=INTEGER}, #{createUserid,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.clear.dao.pojo.TPlan" >
+    update t_plan
+    set ad_id = #{adId,jdbcType=BIGINT},
+      plan_name = #{planName,jdbcType=VARCHAR},
+      max_exposure = #{maxExposure,jdbcType=INTEGER},
+      max_frequency = #{maxFrequency,jdbcType=INTEGER},
+      create_userid = #{createUserid,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select ID, ad_id, plan_name, max_exposure, max_frequency, create_userid, create_time, 
+    modify_time
+    from t_plan
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select ID, ad_id, plan_name, max_exposure, max_frequency, create_userid, create_time, 
+    modify_time
+    from t_plan
+  </select>
+</mapper>

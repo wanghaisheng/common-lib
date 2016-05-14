@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.clear.dao.dao.TAdPositionMapper" >
+  <resultMap id="BaseResultMap" type="com.clear.dao.pojo.TAdPosition" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="position_name" property="positionName" jdbcType="VARCHAR" />
+    <result column="app_id" property="appId" jdbcType="BIGINT" />
+    <result column="types" property="types" jdbcType="VARCHAR" />
+    <result column="width" property="width" jdbcType="INTEGER" />
+    <result column="height" property="height" jdbcType="INTEGER" />
+    <result column="size" property="size" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="is_external_link" property="isExternalLink" jdbcType="VARCHAR" />
+    <result column="interactive_mode" property="interactiveMode" jdbcType="VARCHAR" />
+    <result column="ad_style" property="adStyle" jdbcType="VARCHAR" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_ad_position
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.clear.dao.pojo.TAdPosition" >
+    insert into t_ad_position (ID, position_name, app_id, 
+      types, width, height, 
+      size, status, is_external_link, 
+      interactive_mode, ad_style, modify_time, 
+      create_time)
+    values (#{id,jdbcType=BIGINT}, #{positionName,jdbcType=VARCHAR}, #{appId,jdbcType=BIGINT}, 
+      #{types,jdbcType=VARCHAR}, #{width,jdbcType=INTEGER}, #{height,jdbcType=INTEGER}, 
+      #{size,jdbcType=DECIMAL}, #{status,jdbcType=INTEGER}, #{isExternalLink,jdbcType=VARCHAR}, 
+      #{interactiveMode,jdbcType=VARCHAR}, #{adStyle,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.clear.dao.pojo.TAdPosition" >
+    update t_ad_position
+    set position_name = #{positionName,jdbcType=VARCHAR},
+      app_id = #{appId,jdbcType=BIGINT},
+      types = #{types,jdbcType=VARCHAR},
+      width = #{width,jdbcType=INTEGER},
+      height = #{height,jdbcType=INTEGER},
+      size = #{size,jdbcType=DECIMAL},
+      status = #{status,jdbcType=INTEGER},
+      is_external_link = #{isExternalLink,jdbcType=VARCHAR},
+      interactive_mode = #{interactiveMode,jdbcType=VARCHAR},
+      ad_style = #{adStyle,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select ID, position_name, app_id, types, width, height, size, status, is_external_link, 
+    interactive_mode, ad_style, modify_time, create_time
+    from t_ad_position
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select ID, position_name, app_id, types, width, height, size, status, is_external_link, 
+    interactive_mode, ad_style, modify_time, create_time
+    from t_ad_position
+  </select>
+</mapper>

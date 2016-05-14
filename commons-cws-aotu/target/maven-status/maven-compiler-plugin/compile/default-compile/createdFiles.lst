@@ -1,0 +1,6 @@
+com/clear/domain/TemplateBean.class
+com/clear/path/impl/CreateAppContentPath.class
+com/clear/path/CreateInfo.class
+com/clear/path/impl/CreateInstanceContentPath.class
+com/clear/bootstarp/AutoCommons.class
+com/clear/bootstarp/MapDBUtils.class

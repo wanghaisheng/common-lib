@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.clear.dao.dao.TSchedulingMapper" >
+  <resultMap id="BaseResultMap" type="com.clear.dao.pojo.TScheduling" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="str_id" property="strId" jdbcType="BIGINT" />
+    <result column="cre_id" property="creId" jdbcType="BIGINT" />
+    <result column="area_id" property="areaId" jdbcType="BIGINT" />
+    <result column="date" property="date" jdbcType="DATE" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="time" property="time" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_scheduling
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.clear.dao.pojo.TScheduling" >
+    insert into t_scheduling (ID, str_id, cre_id, 
+      area_id, date, status, time, 
+      create_time, modify_time)
+    values (#{id,jdbcType=BIGINT}, #{strId,jdbcType=BIGINT}, #{creId,jdbcType=BIGINT}, 
+      #{areaId,jdbcType=BIGINT}, #{date,jdbcType=DATE}, #{status,jdbcType=INTEGER}, #{time,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.clear.dao.pojo.TScheduling" >
+    update t_scheduling
+    set str_id = #{strId,jdbcType=BIGINT},
+      cre_id = #{creId,jdbcType=BIGINT},
+      area_id = #{areaId,jdbcType=BIGINT},
+      date = #{date,jdbcType=DATE},
+      status = #{status,jdbcType=INTEGER},
+      time = #{time,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select ID, str_id, cre_id, area_id, date, status, time, create_time, modify_time
+    from t_scheduling
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select ID, str_id, cre_id, area_id, date, status, time, create_time, modify_time
+    from t_scheduling
+  </select>
+</mapper>

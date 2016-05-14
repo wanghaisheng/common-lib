@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.clear.dao.dao.RDicAdMapper" >
+  <resultMap id="BaseResultMap" type="com.clear.dao.pojo.RDicAd" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="ad_form" property="adForm" jdbcType="VARCHAR" />
+    <result column="ad_format" property="adFormat" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from r_dic_ad
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.clear.dao.pojo.RDicAd" >
+    insert into r_dic_ad (id, ad_form, ad_format, 
+      create_time, modify_time)
+    values (#{id,jdbcType=INTEGER}, #{adForm,jdbcType=VARCHAR}, #{adFormat,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.clear.dao.pojo.RDicAd" >
+    update r_dic_ad
+    set ad_form = #{adForm,jdbcType=VARCHAR},
+      ad_format = #{adFormat,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, ad_form, ad_format, create_time, modify_time
+    from r_dic_ad
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, ad_form, ad_format, create_time, modify_time
+    from r_dic_ad
+  </select>
+</mapper>

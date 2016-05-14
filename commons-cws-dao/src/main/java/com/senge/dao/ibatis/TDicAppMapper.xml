@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.clear.dao.dao.TDicAppMapper" >
+  <resultMap id="BaseResultMap" type="com.clear.dao.pojo.TDicApp" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="app_name" property="appName" jdbcType="VARCHAR" />
+    <result column="pkg_name" property="pkgName" jdbcType="VARCHAR" />
+    <result column="banner_url" property="bannerUrl" jdbcType="VARCHAR" />
+    <result column="banner_name" property="bannerName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_dic_app
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.clear.dao.pojo.TDicApp" >
+    insert into t_dic_app (id, app_name, pkg_name, 
+      banner_url, banner_name, create_time, 
+      modify_time)
+    values (#{id,jdbcType=BIGINT}, #{appName,jdbcType=VARCHAR}, #{pkgName,jdbcType=VARCHAR}, 
+      #{bannerUrl,jdbcType=VARCHAR}, #{bannerName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.clear.dao.pojo.TDicApp" >
+    update t_dic_app
+    set app_name = #{appName,jdbcType=VARCHAR},
+      pkg_name = #{pkgName,jdbcType=VARCHAR},
+      banner_url = #{bannerUrl,jdbcType=VARCHAR},
+      banner_name = #{bannerName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select id, app_name, pkg_name, banner_url, banner_name, create_time, modify_time
+    from t_dic_app
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, app_name, pkg_name, banner_url, banner_name, create_time, modify_time
+    from t_dic_app
+  </select>
+</mapper>
